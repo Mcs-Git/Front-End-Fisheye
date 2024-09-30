@@ -99,15 +99,24 @@ main .filter{
     gap: 15px;
 }
 main .filter .filter_text{
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: bold;
 }
-
-.filter .drop_down{
+.filter option{
+    border-bottom: 1px solid white;
+}
+/* .filter .drop_down{
     min-width: 128px;
     position: relative;
+} */
+.filter #drop_down{
+    padding: 10px;
+    background-color: #901C1C;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
 }
-
 .filter .drop_down *{
     box-sizing: border-box;
 }
@@ -320,6 +329,7 @@ form button{
     align-items: center;
     justify-content: center;
     background-color: rgb(228, 228, 228,0.5);
+    background-color: #E5E5E5;
     z-index: 1;
     padding-top: 15px;
     display: none;
@@ -342,6 +352,8 @@ form button{
     /* width: max-content; */
     height: 485px;
     object-fit: cover;
+    display: flex;
+    align-items: center;
     border-radius: 5px;
     margin: 0 auto;
     
@@ -388,6 +400,9 @@ div.active{
 .open_slider{
     cursor: pointer;
 }
+
+
+
 
 @keyframes fade {
     from{
@@ -474,6 +489,7 @@ div.active{
         padding: 20px;
         padding-bottom: 40px;
         padding-left: 17px;
+        margin-top: 0;
     }
     main .gallery article,main .gallery img{
         width: 285px;
@@ -539,11 +555,19 @@ div.active{
     .slider div{
         
         width: 237px;
-        /* animation:  20s  sliding  ease-in-out infinite; */
     }
     
     .slider{
         width: 237px;
+    }
+    main .filter{
+        padding-left: 17px;
+        border: none;
+
+    }
+    main .filter .filter_text, main .filter #drop_down{
+        font-size: 1.5em;
+        width: fit-content;
     }
 }
  
@@ -616,9 +640,5 @@ div.active{
     .close{
         top: 45px;
     }
-    /* .slider div{
-        
-        animation:  10s  sliding  ease-in-out infinite;
-    } */
     
 }

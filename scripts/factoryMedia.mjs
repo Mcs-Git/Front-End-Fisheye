@@ -2,7 +2,7 @@ export function factory_media(media,name){
     let article = document.createElement("article");
     if(media.image != undefined){
         article.innerHTML = `              
-                    <div>
+                    <div class = "media">
                         <img src="/assets/images/${name}/${media.image}" alt="Lilac breasted roller, closeup view">
                     </div>
                     <div class="image_title">
@@ -15,11 +15,11 @@ export function factory_media(media,name){
                     </div>
 
                 `
-                article.dataset.data_name = `${media.title}`
+        article.firstElementChild.dataset.data_name = `${media.title}`
     } 
     else{
         article.innerHTML = `              
-                <div>
+                <div class = "media">
                     <video src="/assets/images/${name}/${media.video}" controls   alt="Lilac breasted roller, closeup view" ></video>
                 </div>
                 <div class="image_title">
@@ -32,7 +32,7 @@ export function factory_media(media,name){
                 </div>
 
             `
-            article.dataset.data_name = `${media.title}`
+        article.firstElementChild.dataset.data_name = `${media.title}`
     }
     return article;
 }

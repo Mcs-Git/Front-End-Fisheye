@@ -12,7 +12,8 @@ const price = document.querySelector(".price");
 const total_number_of_likes = document.querySelector(".total_number_of_likes")
 const params = new URL(document.location).searchParams;
 const id = params.get("id");
-let total_likes = []
+let total_likes_table = []
+let total_likes = 0
 let initial = 0
 const close_modal = document.querySelector(".close_modal");
 const form_modal = document.querySelector(".form_modal");
@@ -26,7 +27,6 @@ const form = document.querySelector("form");
 let validator = false;
 const close_slider = document.querySelector(".close");
 const light_box = document.querySelector(".light_box");
-let article_selected = document.querySelectorAll(".gallery article .open_slider")
 
 
 photographers.forEach(person => {
@@ -39,13 +39,14 @@ photographers.forEach(person => {
         photographer_gallery.forEach(media => {
             if(media.photographerId == id){
                 gallery.appendChild(factory_media(media,person.name.split(' ')[0]));
-                total_likes.push(media.likes)
+                total_likes_table.push(media.likes)
 
-                let sumWithInitial = total_likes.reduce(
+                let sumWithInitial = total_likes_table.reduce(
                     (accumulator, currentValue) => accumulator + currentValue,
                     initial,
                   )
                 total_number_of_likes.innerText = `${sumWithInitial}`;
+                total_likes = sumWithInitial;
             }
             
         });
@@ -72,6 +73,7 @@ document.addEventListener("keydown",(e)=>{
     if(e.key == "Escape"){
         form_modal.style.display = "none"
         body.style.overflowY = "scroll"
+        light_box.style.display = "none"
     }
     
 })
@@ -124,11 +126,13 @@ function validEmail(text,e){
     }
 }
 
-function client_message(prenom, nom, email, message){
-    this.prenom = prenom;
-    this.nom = nom;
-    this.email = email;
-    this.message = message;
+class client_message {
+    constructor(prenom, nom, email, message) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.email = email;
+        this.message = message;
+    }
 }
 
 
@@ -139,6 +143,8 @@ form.addEventListener("submit",(e)=>{
     if(validator){
         let msg = new client_message(validName(prename,e),validName(family_name,e),validEmail(mail,e),comment.value)
         console.log(msg)
+        form_modal.style.display = "none"
+        body.style.overflowY = "scroll"
     }
 })
 
@@ -155,6 +161,8 @@ mail.addEventListener("change",(e)=>{
 
 
 })
+
+
 
 
 const chevron_right = document.querySelector(".right");
@@ -239,11 +247,11 @@ all_photos.forEach(e =>{
     
    
 })
-document.querySelectorAll(".gallery  article").forEach(e =>{
+
+document.querySelectorAll(".gallery  article .media").forEach(e =>{
     e.classList.add("open_slider")
     e.addEventListener("click",(event)=>{
         body.style.overflowY = "hidden"
-
         event.preventDefault()
         photos_names.forEach(el =>{
             if(el.dataset.data_name === e.dataset.data_name){
@@ -252,7 +260,6 @@ document.querySelectorAll(".gallery  article").forEach(e =>{
                 count = names.indexOf(e.dataset.data_name)
                 
                 
-                console.log(image_slider)
             } 
             else{
                 el.classList.remove("active")
@@ -273,3 +280,43 @@ chevron_left.addEventListener("click",(event) =>{
     event.preventDefault()
     previous_slider(image_slider,number_of_slides)
 });
+
+let like = document.querySelectorAll("article .likes svg")
+let clicked = true
+let modified = false
+like.forEach(e =>{
+    let current_like = parseInt(e.previousSibling.previousSibling.innerText)
+    e.style.cursor = "pointer"
+    e.addEventListener("click",(event)=>{
+        if(!event.target.classList.contains("modified")){
+            event.target.classList.add("modified")
+            current_like++;
+            e.previousSibling.previousSibling.innerText = current_like
+            total_likes++;
+            total_number_of_likes.innerText = total_likes;
+            clicked = false
+            modified = true
+            console.log(parseInt(e.previousSibling.previousSibling.innerText))
+
+        } 
+       
+        else {
+            event.target.classList.remove("modified")
+            current_like--;
+            e.previousSibling.previousSibling.innerText = current_like
+            total_likes--;
+            total_number_of_likes.innerText = total_likes;
+            clicked = true
+            modified = false
+
+        }
+        console.log(like)
+        
+    })
+})
+document.querySelector("article .media").removeEventListener("click",(e)=>{console.log(e)})
+console.log(total_likes)
+
+
+let option = document.querySelector("select option")
+console.log(option.value)
