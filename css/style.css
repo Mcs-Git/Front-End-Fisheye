@@ -164,6 +164,8 @@ article:nth-child(3) .photograph_photo img{
         flex-direction: column;
         gap: 100px;
         padding: 10px;
+        padding-bottom: 100px;
+        overflow-y: scroll;
     }
     
     
