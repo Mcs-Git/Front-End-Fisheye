@@ -671,6 +671,11 @@ div.active{
     .close{
         top: 45px;
     }
-    
+    main .filter{
+        padding-left: 15px;
+    }
+    main .filter p, main .filter_text{
+        font-size: 1.3rem;
+    }
     
 }
