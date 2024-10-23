@@ -16,6 +16,7 @@ export function factory_media(media,name){
 
                 `
         article.firstElementChild.dataset.data_name = `${media.title}`
+        article.dataset.data_date= `${media.date}`
     } 
     else{
         article.innerHTML = `              
@@ -33,6 +34,7 @@ export function factory_media(media,name){
 
             `
         article.firstElementChild.dataset.data_name = `${media.title}`
+        article.dataset.data_date= `${media.date}`
     }
     return article;
 }

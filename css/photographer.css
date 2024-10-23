@@ -46,7 +46,7 @@ main .photographer_profile  h1{
     width: fit-content;
     color: #525252;
 }
-main .photograph_header a,.filter .filter_box{
+main .photograph_header a{
     display: block;
     text-decoration: none;
     text-align: center;
@@ -97,62 +97,69 @@ main .filter{
     margin: 0 auto;
     display: flex;
     gap: 15px;
+    
 }
 main .filter .filter_text{
     font-size: 1.125rem;
     font-weight: bold;
 }
-.filter option{
-    border-bottom: 1px solid white;
-}
-/* .filter .drop_down{
-    min-width: 128px;
-    position: relative;
-} */
-.filter #drop_down{
+
+.filter .filter_box{
+    width: 150px;
     padding: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     background-color: #901C1C;
-    outline: none;
-    border: none;
+    border-radius: 8px;
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.filter svg{
+    width: 15px;
+    fill: white;
+    cursor: pointer;
+    
+}
+
+.filter_box p{
     color: white;
+    width: 100%;
+    padding-left: 7px;
+    cursor: pointer;
     font-size: 1rem;
 }
-.filter .drop_down *{
-    box-sizing: border-box;
-}
-.drop_down .filter_box{
+.filter .first_option{
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding-right: 0px;
-    z-index: 2;
+    flex-direction: row;
+    align-items: first baseline;
+    gap: 0;
+    padding-bottom: 11px;
 }
-.drop_down svg{
-    width: 13px;
-    fill: white;
+.filter p:nth-child(2){
+    padding-bottom: 11px;
+    
 }
-.svg_rotate{
-    transform: rotate(180deg);
-}
-.drop_down .menu{
-    list-style: none;
-    padding: 15px;
-    background-color: #901C1C;
-    border-radius: 5px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-top: 1px solid wheat;
-    color: white;
-    position: absolute;
-    top: 2.7em;
-    left: 50%;
-    width: 99.5%;
-    transform: translateX(-50%);
-    z-index: -2;
-    /* opacity: 0;
-    display: none; */
+.filter .border{
+    border-bottom: 1px solid white;
 
 }
+.filter_box{
+    border-radius: 8px;
+
+}
+.filter .rotate_transition{
+    transform: rotate(-180deg) ;
+    transition: transform 400ms  ease;
+}
+.filter .filter_box_modified{
+    height: 42px;
+    overflow: hidden;
+}
+
+
+
 
 main .gallery {
     max-width: 1175px;
@@ -203,6 +210,7 @@ main .gallery .image_title .likes{
     gap: 3px;
 }
 
+
 footer{
     position: relative;
     width: 100%;
@@ -250,6 +258,7 @@ video {
     height: 100vh;
     position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -321,10 +330,12 @@ form button{
 }
 
 .light_box{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100%;
     position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -332,6 +343,7 @@ form button{
     background-color: #E5E5E5;
     z-index: 1;
     padding-top: 15px;
+    margin: 0 auto;
     display: none;
 }
 .chevron{
@@ -362,6 +374,7 @@ form button{
 .slider p{
     font-size: 1.3rem;
     color: #901C1C;
+    padding-top: 7px;
 }
 .light_box_slider{
     position: relative;
@@ -369,12 +382,13 @@ form button{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
     width: 600px;
     height: 100%;
     height: 520px;
     
 }
+
 .slider div{
     
     position: relative;
@@ -394,8 +408,8 @@ div.active{
     align-items: center;
     justify-content: start;
     width: 555px;
-    height: 510px;
-    overflow: hidden;
+    height: 515px;
+    overflow-y: hidden;
 }
 .open_slider{
     cursor: pointer;
@@ -565,10 +579,27 @@ div.active{
         border: none;
 
     }
-    main .filter .filter_text, main .filter #drop_down{
+    main .filter .filter_text, main .filter p{
         font-size: 1.5em;
-        width: fit-content;
+        padding-left: 3px;
+        /* width: fit-content; */
     }
+    main .filter .filter_box{
+        width: 100px;
+        padding: 5px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        gap: 9px;
+    }
+    .filter .filter_box_modified{
+        height: 30px;
+    }
+    
+    .filter .first_option,.filter p:nth-child(2){
+        padding-bottom: 7px;
+        
+    }
+    
 }
  
 
@@ -640,5 +671,6 @@ div.active{
     .close{
         top: 45px;
     }
+    
     
 }

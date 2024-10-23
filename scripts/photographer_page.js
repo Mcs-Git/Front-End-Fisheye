@@ -1,6 +1,8 @@
 import { all_photographers } from "./getPhotographers.mjs";
 import { factory_profile } from "./factoryPhotographerProfile.mjs";
 import { factory_media } from "./factoryMedia.mjs"
+import { dropMenu } from "./dropMenu.mjs";
+import { filter } from "./filter.mjs";
 
 
 let photographers_data = await all_photographers();
@@ -27,6 +29,7 @@ const form = document.querySelector("form");
 let validator = false;
 const close_slider = document.querySelector(".close");
 const light_box = document.querySelector(".light_box");
+
 
 
 photographers.forEach(person => {
@@ -226,6 +229,8 @@ close_slider.addEventListener("click",(event)=>{
 show_all_photos()
 let photos_names = []
 
+function show_photos(all_photos){
+
 all_photos.forEach(e =>{
     let photo = document.createElement("div")
     
@@ -247,6 +252,14 @@ all_photos.forEach(e =>{
     
    
 })
+}
+
+show_photos(all_photos)
+
+
+dropMenu()
+filter(all_photos,photographers,id)
+
 
 document.querySelectorAll(".gallery  article .media").forEach(e =>{
     e.classList.add("open_slider")
@@ -314,9 +327,5 @@ like.forEach(e =>{
         
     })
 })
-document.querySelector("article .media").removeEventListener("click",(e)=>{console.log(e)})
-console.log(total_likes)
 
 
-let option = document.querySelector("select option")
-console.log(option.value)

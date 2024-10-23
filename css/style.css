@@ -74,7 +74,7 @@ article .photograph_text{
     width: fit-content;
 }
 article .photograph_price{
-    font-size: 0.563rem;
+    font-size: 0.6rem;
     text-align: center;
     width: fit-content;
     color: #757575;
@@ -170,7 +170,6 @@ article:nth-child(3) .photograph_photo img{
         padding-bottom: 130px;
         overflow-y: scroll;
         height: fit-content;
-        /* border: 1px solid red; */
     }
     
     
